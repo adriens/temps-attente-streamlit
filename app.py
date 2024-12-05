@@ -81,10 +81,10 @@ if communes:
 
         #récuper l'id de l'agence
         id_agence = st.query_params["idAgence"]
-        # Début de la journée à 7h45 avec décalage de -11 heures (fuseau UTC)
-        debut = (get_current_time().replace(hour=7, minute=45, second=0, microsecond=0) - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
+        # Début de la journée à 7h45 avec UTC+11 YYYY-MM-DDTHH:MM:SS+HH:MM)
+        debut = get_current_time().replace(hour=7, minute=45, second=0, microsecond=0).strftime("%Y-%m-%dT%H:%M:%S+11:00")
         #heure de fin = heure actuelle moins un décalage de 11 heures
-        fin = (get_current_time() - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
+        fin = get_current_time().strftime("%Y-%m-%dT%H:%M:%S+11:00")
         # Récupérer l'historique de la journée actuelle
         df = fetch_agence_historique(id_agence, debut, fin)
         if not df.empty:

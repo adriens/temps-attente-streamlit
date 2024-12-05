@@ -131,9 +131,9 @@ def fetch_agence_historique(id_agence,debut,fin):
         times = [entry['timestamp'] for entry in historique]
         waiting_times = [entry['realMaxWaitingTimeMs'] / 60000 for entry in historique]  # Convertir en minutes
         # Convertir les timestamps en objets datetime
-        times = pd.to_datetime(times, format="%Y-%m-%dT%H:%M:%S.%f", errors='coerce')
+        times = pd.to_datetime(times, errors='coerce')
         # Ajouter un décalage de +11 heures pour correspondre à UTC+11
-        times = times + pd.Timedelta(hours=11)
+        # times = times + pd.Timedelta(hours=11)
         # Créer un DataFrame avec les données
         df = pd.DataFrame({
             "Time": times,
