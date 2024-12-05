@@ -9,7 +9,7 @@ import pandas as pd
 
 INTERVALLE_AUTOREFRESH = 3 * 60 # 3 minutes
 API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
-API_TEMPS_ATTENTE_BASE_URL_RAPIDAPI = "https://temps-attente-en-agence.p.rapidapi.com/"
+#API_TEMPS_ATTENTE_BASE_URL_RAPIDAPI = "https://temps-attente-en-agence.p.rapidapi.com/"
 
 # Obtenir la datetime dans le fuseau horaire de NC
 def get_current_time():
@@ -124,7 +124,7 @@ def fetch_agence_historique(id_agence,debut,fin):
         "debut": debut,
         "fin": fin
     }
-    response = requests.get(API_TEMPS_ATTENTE_BASE_URL_RAPIDAPI + f"agences/{id_agence}/historique", headers=headers_rapidapi, params=params)
+    response = requests.get(API_TEMPS_ATTENTE_BASE_URL + f"agences/{id_agence}/historique", headers=headers, params=params)
     if response.status_code == 200:
         historique = response.json()
         # Récupération des timestamps et des temps d'attente max en minutes
